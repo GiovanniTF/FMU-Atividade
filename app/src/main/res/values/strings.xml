@@ -8,4 +8,6 @@
     <string name="digite_algum_item">Digite algum item</string>
     <string name="adicionar">Adicionar</string>
     <string name="limpar_lista">Limpar Lista</string>
+    <string name="mensagem_lista_limpa">Sua lista foi limpa</string>
+    <string name="mensagem_item_deletado">Seu item foi deletado</string>
 </resources>

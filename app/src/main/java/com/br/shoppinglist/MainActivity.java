@@ -44,11 +44,13 @@ public class MainActivity extends AppCompatActivity {
         adaptertList.setOnDeleteClickListener(itemLista -> {
             bancoDados.deletar(itemLista);
             adaptertList.add(bancoDados.buscar());
+            Toast.makeText(this, R.string.mensagem_item_deletado, Toast.LENGTH_SHORT).show();
         });
 
         limparLista.setOnClickListener(v -> {
             bancoDados.cleanList(itemLista);
             adaptertList.add(bancoDados.buscar());
+            Toast.makeText(this, R.string.mensagem_lista_limpa, Toast.LENGTH_SHORT).show();
         });
     }
 
@@ -57,7 +59,8 @@ public class MainActivity extends AppCompatActivity {
         itemLista.setItem(item.getText().toString());
         bancoDados.inserir(itemLista);
         adaptertList.add(bancoDados.buscar());
+        item.getText().clear();
 
-        Toast.makeText(this, R.string.itemInserido, Toast.LENGTH_LONG).show();
+        Toast.makeText(this, R.string.itemInserido, Toast.LENGTH_SHORT).show();
     }
 }
