@@ -16,6 +16,7 @@ public class MainActivity extends AppCompatActivity {
     private AdaptertList adaptertList;
     private EditText item;
     private Button adicionar;
+    private Button limparLista;
     private RecyclerView recyclerView;
     private BancoDados bancoDados;
 
@@ -25,6 +26,7 @@ public class MainActivity extends AppCompatActivity {
 
         item = (EditText) findViewById(R.id.edtItemId);
         adicionar = (Button) findViewById(R.id.btnAdicionarId);
+        limparLista = (Button) findViewById(R.id.btnLimparId);
         recyclerView = (RecyclerView) findViewById(R.id.rcvItensId);
 
         bancoDados = new BancoDados(this);
@@ -33,7 +35,7 @@ public class MainActivity extends AppCompatActivity {
         recyclerView.setLayoutManager(new LinearLayoutManager(this));
         recyclerView.setAdapter(adaptertList);
 
-        if(bancoDados.buscar().size() > 0){
+        if (bancoDados.buscar().size() > 0) {
             adaptertList.add(bancoDados.buscar());
         }
 
@@ -41,6 +43,11 @@ public class MainActivity extends AppCompatActivity {
 
         adaptertList.setOnDeleteClickListener(itemLista -> {
             bancoDados.deletar(itemLista);
+            adaptertList.add(bancoDados.buscar());
+        });
+
+        limparLista.setOnClickListener(v -> {
+            bancoDados.cleanList(itemLista);
             adaptertList.add(bancoDados.buscar());
         });
     }

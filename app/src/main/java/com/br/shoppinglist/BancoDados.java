@@ -34,6 +34,10 @@ public class BancoDados {
         db.delete("tabelaItem", "_id = " + itemLista.getId(), null);
     }
 
+    public void cleanList(ItemLista itemLista){
+        db.delete("tabelaItem", null, null);
+    }
+
     public List<ItemLista> buscar() {
         List<ItemLista> list = new ArrayList<>();
         String[] colunas = new String[]{"_id", "item"};
