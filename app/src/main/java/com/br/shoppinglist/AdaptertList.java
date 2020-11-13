@@ -11,14 +11,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import java.util.List;
 
-public class AdapterFragmentList extends RecyclerView.Adapter<AdapterFragmentList.ShoppingViewHolder> {
+public class AdaptertList extends RecyclerView.Adapter<AdaptertList.ShoppingViewHolder> {
     private List<ItemLista> shoppingList;
     private OnDeleteClickListener onDeleteClickListener;
 
-    public AdapterFragmentList() {
+    public AdaptertList() {
     }
 
-    public AdapterFragmentList(List<ItemLista> repositoryList) {
+    public AdaptertList(List<ItemLista> repositoryList) {
         this.shoppingList = repositoryList;
     }
 
@@ -40,20 +40,6 @@ public class AdapterFragmentList extends RecyclerView.Adapter<AdapterFragmentLis
         shoppingList.addAll(repositories);
         notifyDataSetChanged();
     }
-
-//    public void add(ItemLista itemLista) {
-//        shoppingList.add(itemLista);
-//        notifyDataSetChanged();
-//    }
-//
-//    public void delete(ItemLista itemLista) {
-//        for (ItemLista lista : shoppingList) {
-//            if (itemLista.getId() == lista.getId()) {
-//                shoppingList.remove(itemLista);
-//            }
-//        }
-//        notifyDataSetChanged();
-//    }
 
     public void setOnDeleteClickListener(OnDeleteClickListener onDeleteClickListener) {
         this.onDeleteClickListener = onDeleteClickListener;

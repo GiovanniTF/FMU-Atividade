@@ -38,7 +38,7 @@ public class BancoDados {
         List<ItemLista> list = new ArrayList<>();
         String[] colunas = new String[]{"_id", "item"};
 
-        Cursor cursor = db.query("tabelaItem", colunas, null, null, null, null, "nome ASC");
+        Cursor cursor = db.query("tabelaItem", colunas, null, null, null, null, "_id");
 
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
