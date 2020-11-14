@@ -3,6 +3,7 @@ package com.br.shoppinglist;
 import android.os.Bundle;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.appcompat.app.AppCompatActivity;
@@ -15,6 +16,8 @@ public class MainActivity extends AppCompatActivity {
     private ItemLista itemLista;
     private AdaptertList adaptertList;
     private EditText item;
+    private EditText valor;
+    private TextView valorTotal;
     private Button adicionar;
     private Button limparLista;
     private RecyclerView recyclerView;
@@ -25,6 +28,8 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
 
         item = (EditText) findViewById(R.id.edtItemId);
+        valor = (EditText) findViewById(R.id.edtValorId);
+        valorTotal = (TextView) findViewById(R.id.txvTotalId);
         adicionar = (Button) findViewById(R.id.btnAdicionarId);
         limparLista = (Button) findViewById(R.id.btnLimparId);
         recyclerView = (RecyclerView) findViewById(R.id.rcvItensId);
@@ -57,6 +62,7 @@ public class MainActivity extends AppCompatActivity {
     public void salvarItem() {
         itemLista = new ItemLista();
         itemLista.setItem(item.getText().toString());
+        itemLista.setValor(valor.getText().toString());//VERIFICAR SE FUNCIONA
         bancoDados.inserir(itemLista);
         adaptertList.add(bancoDados.buscar());
         item.getText().clear();

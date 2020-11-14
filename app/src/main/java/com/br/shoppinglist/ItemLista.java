@@ -2,8 +2,8 @@ package com.br.shoppinglist;
 
 public class ItemLista {
     private String item;
+    private String valor;
     private long id;
-
 
     public String getItem() {
         return item;
@@ -19,5 +19,13 @@ public class ItemLista {
 
     public void setId(long id) {
         this.id = id;
+    }
+
+    public String getValor() {
+        return valor;
+    }
+
+    public void setValor(String valor) {
+        this.valor = valor;
     }
 }

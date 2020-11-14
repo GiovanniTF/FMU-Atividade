@@ -19,6 +19,7 @@ public class BancoDados {
     public void inserir(ItemLista itemLista) {
         ContentValues valores = new ContentValues();
         valores.put("item", itemLista.getItem());
+        valores.put("valor", itemLista.getValor());
 
         db.insert("tabelaItem", null, valores);
     }
@@ -26,6 +27,7 @@ public class BancoDados {
     public void atualizar(ItemLista itemLista) {
         ContentValues valores = new ContentValues();
         valores.put("item", itemLista.getItem());
+        valores.put("valor", itemLista.getValor());
 
         db.update("tabelaItem", valores, "_id = ?", new String[]{"" + itemLista.getId()});
     }
@@ -40,9 +42,9 @@ public class BancoDados {
 
     public List<ItemLista> buscar() {
         List<ItemLista> list = new ArrayList<>();
-        String[] colunas = new String[]{"_id", "item"};
+        String[] colunas = new String[]{"_id", "item", "valor"};
 
-        Cursor cursor = db.query("tabelaItem", colunas, null, null, null, null, "_id");
+        Cursor cursor = db.query("tabelaItem", colunas, null, null, null, null, "item ASC");
 
         if (cursor.getCount() > 0) {
             cursor.moveToFirst();
@@ -50,6 +52,7 @@ public class BancoDados {
                 ItemLista itemLista = new ItemLista();
                 itemLista.setId(cursor.getLong(0));
                 itemLista.setItem(cursor.getString(1));
+                itemLista.setValor(cursor.getString(2));
                 list.add(itemLista);
             } while (cursor.moveToNext());
         }

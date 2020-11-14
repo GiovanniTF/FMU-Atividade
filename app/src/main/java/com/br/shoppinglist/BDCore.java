@@ -13,7 +13,10 @@ public class BDCore extends SQLiteOpenHelper {
     }
 
     @Override public void onCreate(SQLiteDatabase db) {
-        db.execSQL("create table tabelaItem(_id integer primary key autoincrement, item text not null);");
+        db.execSQL("create table tabelaItem(_id integer primary key autoincrement, item text not null, valor text " +
+                "not" +
+                " " +
+                "null);");
     }
 
     @Override public void onUpgrade(SQLiteDatabase db, int oldVersion, int newVersion) {

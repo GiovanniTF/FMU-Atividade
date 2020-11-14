@@ -48,16 +48,19 @@ public class AdaptertList extends RecyclerView.Adapter<AdaptertList.ShoppingView
     public class ShoppingViewHolder extends RecyclerView.ViewHolder {
         public TextView txItem;
         public Button btnDeletar;
+        public TextView txvValorItem;
 
         public ShoppingViewHolder(View view) {
             super(view);
-            txItem = (TextView) view.findViewById(R.id.txtItensId);
+            txItem = (TextView) view.findViewById(R.id.txvItensId);
             btnDeletar = (Button) view.findViewById(R.id.btnDeletarId);
+            txvValorItem = (TextView) view.findViewById(R.id.txvValorItemId);
         }
 
         public void onBind(int position) {
             ItemLista itemLista = shoppingList.get(position);
             txItem.setText(itemLista.getItem());
+            txvValorItem.setText(itemLista.getValor()); //VERIFICAR SE FUNCIONA
 
             btnDeletar.setOnClickListener(v -> onDeleteClickListener.onClick(itemLista));
         }
