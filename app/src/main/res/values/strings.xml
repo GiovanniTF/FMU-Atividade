@@ -10,4 +10,8 @@
     <string name="limpar_lista">Limpar Lista</string>
     <string name="mensagem_lista_limpa">Sua lista foi limpa</string>
     <string name="mensagem_item_deletado">Seu item foi deletado</string>
+    <string name="rs">R$</string>
+    <string name="x">X</string>
+    <string name="logo_do_app">Logo do app</string>
+    <string name="shopping_list_app">Shopping List App</string>
 </resources>
