@@ -24,5 +24,6 @@
     <string name="errorPasswordValidation">Password Invalid</string>
     <string name="errorEmailValidation">Email Invalid</string>
     <string name="confirm_password">Confirm Password</string>
+    <string name="password_requirements">*Senha deve ter no minímo 6 caracteres sendo um especial, 4 digitos numericos, e 1 letra maiúscula</string>
 
 </resources>

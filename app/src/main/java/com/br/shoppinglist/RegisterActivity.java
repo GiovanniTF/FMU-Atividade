@@ -28,6 +28,11 @@ public class RegisterActivity extends AppCompatActivity {
     public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
             Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
+    private static final String PASSWORD_PATTERN =
+            "^(?=.*[0-9])(?=.*[a-z])(?=.*[A-Z])(?=.*[!@#&()–[{}]:;',?/*~$^+=<>]).{6,20}$";
+
+    private static final Pattern pattern = Pattern.compile(PASSWORD_PATTERN);
+
     private FirebaseAuth user = FirebaseAuth.getInstance();
 
     @Override protected void onCreate(Bundle savedInstanceState) {
@@ -70,8 +75,14 @@ public class RegisterActivity extends AppCompatActivity {
         return matcher.find();
     }
 
+    public static boolean isValidPassword(final String password) {
+        Matcher matcher = pattern.matcher(password);
+        return matcher.matches();
+    }
+
     public boolean validatePassword() {
-        if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+        if (password.getText().toString().equals(confirmPassword.getText().toString())
+        && isValidPassword(password.getText().toString())) {
             return true;
         } else {
             return false;
