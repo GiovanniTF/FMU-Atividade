@@ -21,4 +21,7 @@
     <string name="register">Register</string>
     <string name="succesRegister">Register Successful</string>
     <string name="errorRegister">Register Error</string>
+    <string name="errorPasswordValidation">Password Invalid</string>
+    <string name="confirm_password">Confirm Password</string>
+
 </resources>

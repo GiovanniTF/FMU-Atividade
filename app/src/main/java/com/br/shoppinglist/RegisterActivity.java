@@ -1,13 +1,13 @@
 package com.br.shoppinglist;
 
-import androidx.annotation.NonNull;
-import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
+
+import androidx.annotation.NonNull;
+import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
@@ -19,6 +19,7 @@ import org.jetbrains.annotations.NotNull;
 public class RegisterActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
+    private EditText confirmPassword;
     private Button register;
 
     private FirebaseAuth user = FirebaseAuth.getInstance();
@@ -29,22 +30,37 @@ public class RegisterActivity extends AppCompatActivity {
 
         email = findViewById(R.id.emailAddress);
         password = findViewById(R.id.password);
+        confirmPassword = findViewById(R.id.confirmPassword);
         register = findViewById(R.id.register);
 
         register.setOnClickListener(v -> {
-            createUser();
+            if (passwordIsValid()) {
+                createUser();
+            } else {
+                password.getText().clear();
+                confirmPassword.getText().clear();
+            }
         });
     }
 
-    public void createUser(){
-        user.createUserWithEmailAndPassword(
-                email.getText().toString(), password.getText().toString())
+    public boolean passwordIsValid() {
+        if (password.getText().toString().equals(confirmPassword.getText().toString())) {
+            return true;
+        } else {
+            Log.e("RegisterUser", "Register Password Error");
+            Toast.makeText(RegisterActivity.this, R.string.errorPasswordValidation, Toast.LENGTH_SHORT).show();
+            return false;
+        }
+    }
+
+    public void createUser() {
+        user.createUserWithEmailAndPassword(email.getText().toString(), password.getText().toString())
                 .addOnCompleteListener(RegisterActivity.this, new OnCompleteListener<AuthResult>() {
                     @Override public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
-                        if(task.isSuccessful()){
+                        if (task.isSuccessful()) {
                             Log.i("RegisterUser", "Register Successful");
                             Toast.makeText(RegisterActivity.this, R.string.succesRegister, Toast.LENGTH_SHORT).show();
-                        }else {
+                        } else {
                             Log.e("RegisterUser", "Register Error");
                             Toast.makeText(RegisterActivity.this, R.string.errorRegister, Toast.LENGTH_SHORT).show();
                         }
