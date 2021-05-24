@@ -16,11 +16,17 @@ import com.google.firebase.auth.FirebaseAuth;
 
 import org.jetbrains.annotations.NotNull;
 
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
+
 public class RegisterActivity extends AppCompatActivity {
     private EditText email;
     private EditText password;
     private EditText confirmPassword;
     private Button register;
+
+    public static final Pattern VALID_EMAIL_ADDRESS_REGEX =
+            Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE);
 
     private FirebaseAuth user = FirebaseAuth.getInstance();
 
@@ -34,21 +40,40 @@ public class RegisterActivity extends AppCompatActivity {
         register = findViewById(R.id.register);
 
         register.setOnClickListener(v -> {
-            if (passwordIsValid()) {
+            if (validateEmailAndPassword()) {
                 createUser();
-            } else {
+            } else{
                 password.getText().clear();
                 confirmPassword.getText().clear();
             }
         });
     }
 
-    public boolean passwordIsValid() {
+    public boolean validateEmailAndPassword(){
+        if(validateEmail(email.getText().toString()) && validatePassword()){
+            return true;
+        }else if(!validateEmail(email.getText().toString())){
+            Log.e("RegisterUser", "Register Email Error");
+            Toast.makeText(RegisterActivity.this, R.string.errorEmailValidation, Toast.LENGTH_SHORT).show();
+            return false;
+        }else if(!validatePassword()){
+            Log.e("RegisterUser", "Register Password Error");
+            Toast.makeText(RegisterActivity.this, R.string.errorPasswordValidation, Toast.LENGTH_SHORT).show();
+            return false;
+        }else {
+            return false;
+        }
+    }
+
+    public static boolean validateEmail(String email) {
+        Matcher matcher = VALID_EMAIL_ADDRESS_REGEX.matcher(email);
+        return matcher.find();
+    }
+
+    public boolean validatePassword() {
         if (password.getText().toString().equals(confirmPassword.getText().toString())) {
             return true;
         } else {
-            Log.e("RegisterUser", "Register Password Error");
-            Toast.makeText(RegisterActivity.this, R.string.errorPasswordValidation, Toast.LENGTH_SHORT).show();
             return false;
         }
     }
