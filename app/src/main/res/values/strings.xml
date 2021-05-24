@@ -19,12 +19,14 @@
     <string name="password">Password</string>
     <string name="login">Login</string>
     <string name="register">Register</string>
-    <string name="succesRegister">Register Successful</string>
+    <string name="successRegister">Register Successful</string>
     <string name="errorRegister">Register Error</string>
     <string name="errorPasswordValidation">Password Invalid</string>
     <string name="errorEmailValidation">Email Invalid</string>
     <string name="confirm_password">Confirm Password</string>
     <string name="password_requirements">*Senha deve ter no minímo 6 caracteres sendo um especial, 4 digitos numericos, e 1 letra maiúscula</string>
     <string name="register_now">Register Now!</string>
+    <string name="success_login">User Logged In</string>
+    <string name="error_login">User not logged in</string>
 
 </resources>

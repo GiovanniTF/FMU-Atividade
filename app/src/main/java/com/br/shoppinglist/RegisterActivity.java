@@ -1,12 +1,15 @@
 package com.br.shoppinglist;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.MenuItem;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -38,6 +41,11 @@ public class RegisterActivity extends AppCompatActivity {
     @Override protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_register);
+        ActionBar actionBar = getSupportActionBar();
+
+        if(actionBar != null){
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
 
         email = findViewById(R.id.emailAddress);
         password = findViewById(R.id.password);
@@ -95,12 +103,18 @@ public class RegisterActivity extends AppCompatActivity {
                     @Override public void onComplete(@NonNull @NotNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.i("RegisterUser", "Register Successful");
-                            Toast.makeText(RegisterActivity.this, R.string.succesRegister, Toast.LENGTH_SHORT).show();
+                            Toast.makeText(RegisterActivity.this, R.string.successRegister, Toast.LENGTH_SHORT).show();
                         } else {
                             Log.e("RegisterUser", "Register Error");
                             Toast.makeText(RegisterActivity.this, R.string.errorRegister, Toast.LENGTH_SHORT).show();
                         }
                     }
                 });
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(RegisterActivity.this, LoginActivity.class));
+        return super.onOptionsItemSelected(item);
     }
 }
