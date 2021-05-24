@@ -15,7 +15,7 @@ public class SplashScreen extends Activity {
 
         new Handler().postDelayed(() -> {
             Intent i = new Intent(SplashScreen.this,
-                    RegisterActivity.class);
+                    LoginActivity.class);
             startActivity(i);
 
             finish();
