@@ -14,4 +14,11 @@
     <string name="x">X</string>
     <string name="logo_do_app">Logo do app</string>
     <string name="shopping_list_app">Shopping List App</string>
+    //Loggin
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="login">Login</string>
+    <string name="register">Register</string>
+    <string name="succesRegister">Register Successful</string>
+    <string name="errorRegister">Register Error</string>
 </resources>
