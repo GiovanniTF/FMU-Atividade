@@ -30,5 +30,6 @@
     <string name="error_login">User not logged in</string>
     <string name="sign_in_with_google">Sign in with Google</string>
     <string name="logout">Logout</string>
+    <string name="account">Account</string>
 
 </resources>
