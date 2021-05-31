@@ -1,10 +1,12 @@
 package com.br.shoppinglist;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.ActionBar;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.MenuItem;
 import android.widget.Button;
 
 import com.google.firebase.auth.AuthResult;
@@ -35,5 +37,11 @@ public class MenuActivity extends AppCompatActivity {
         FirebaseAuth.getInstance().signOut();
         Intent i = new Intent(MenuActivity.this, LoginActivity.class);
         startActivity(i);
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(@NonNull MenuItem item) {
+        startActivity(new Intent(MenuActivity.this, MainActivity.class));
+        return super.onOptionsItemSelected(item);
     }
 }
