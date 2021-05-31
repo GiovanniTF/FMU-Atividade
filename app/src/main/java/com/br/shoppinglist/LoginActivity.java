@@ -49,7 +49,11 @@ public class LoginActivity extends AppCompatActivity {
         loginGoogle = findViewById(R.id.signWithGoogle);
 
         login.setOnClickListener(v -> {
-            signUser();
+            if(validTextLogin()){
+                signUser();
+            }else {
+                Toast.makeText(LoginActivity.this, "Login Error", Toast.LENGTH_SHORT).show();
+            }
         });
 
         registerNow.setOnClickListener(v -> {
@@ -159,6 +163,21 @@ public class LoginActivity extends AppCompatActivity {
                         }
                     }
                 });
+    }
+
+    private boolean validTextLogin(){
+       if(email.getText().toString().isEmpty() && password.getText().toString().isEmpty()){
+           Toast.makeText(LoginActivity.this, "Email and Password Invalid", Toast.LENGTH_SHORT).show();
+           return false;
+       }else if(email.getText().toString().isEmpty() && !password.getText().toString().isEmpty()){
+           Toast.makeText(LoginActivity.this, "Email Invalid", Toast.LENGTH_SHORT).show();
+           return false;
+       }else if (!email.getText().toString().isEmpty() && password.getText().toString().isEmpty()){
+           Toast.makeText(LoginActivity.this, "Password Invalid", Toast.LENGTH_SHORT).show();
+           return false;
+       }else {
+           return true;
+       }
     }
 
     private void updateUI(FirebaseUser user){
